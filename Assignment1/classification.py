@@ -60,15 +60,17 @@ def circle_h(X, W):
 
 def plot_error(e, e_test):
     plt.figure()
-    plt.title = "Error"
+    plt.title("Error plot")
+    plt.xlabel("iterations")
+    plt.ylabel("cross-entropy error")
     plt.plot(e[:,0], e[:,1], 'k')
     plt.plot(e_test[:,0], e_test[:,1], 'r')
 
 def plot_points(X_pos, X_neg, X, W, title, linear=True):
     plt.figure()
-    plt.title = title
-    plt.xlabel = "X1"
-    plt.ylabel = "X2"
+    plt.title(title)
+    plt.xlabel("X1")
+    plt.ylabel("X2")
     plt.plot(X_pos[:,1], X_pos[:,2], 'r.')
     plt.plot(X_neg[:,1], X_neg[:,2], 'b.')
     if linear:
