@@ -2,7 +2,7 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 import csv
-from vector import createX, createY, createCsv
+from vector import createCsv
 
 #Calculate ordinary least squares to find weights
 def OLS(x,y):
@@ -41,18 +41,18 @@ def calc_error(H,X,Y):
         e += (H[i]-Y[i])**2
     return e/len(Y)
 
-def train(filepath,X_dim):
+def train(filepath):
     csv = createCsv(filepath)
-    X = createX(csv, X_dim)
-    Y = createY(csv,1)
+    X = csv[0]
+    Y = csv[1]
     W= OLS(X,Y)
     H = calc_h(W,X)
     return X, Y, W, H
 
-def test_data(filepath,X_dim):
+def test_data(filepath):
     csv = createCsv(filepath)
-    X = createX(csv, X_dim)
-    Y = createY(csv,1)
+    X = csv[0]
+    Y = csv[1]
     return X,Y
 
 """
@@ -68,10 +68,10 @@ def print_end_info(X,Y,Xt,Yt,H):
     print ("Error of testdata ", calc_error(H, Xt, Yt))
 
 
-filepath = "./datasets/regression/train_2d_reg_data.csv"
-X, Y, W, H = train(filepath,3)
-Xt,Yt = test_data("./datasets/regression/test_2d_reg_data.csv",3)
+filepath = "./datasets/regression/train_1d_reg_data.csv"
+X, Y, W, H = train(filepath)
+Xt,Yt = test_data("./datasets/regression/test_1d_reg_data.csv")
 Ht = calc_h(W,Xt)
-#plot_result(X,Y,Xt,Yt,H,Ht)
+plot_result(X,Y,Xt,Yt,H,Ht)
 print_end_info(X,Y,Xt,Yt,H)
 plt.show()
