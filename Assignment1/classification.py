@@ -106,4 +106,4 @@ def task1():
     plot_error(e, e_test)
     plt.show()
 
-task2(False)
+task1()
